@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
                         const sid = string_session;
 
                         const dt = await HansamalPairWeb.sendMessage(Imalka&, {
-                            text: sid
+                            text: Imalka&
                         });
 
                     } catch (e) {
